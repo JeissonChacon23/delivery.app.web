@@ -7,3 +7,4 @@ export { DashboardView } from './Dashboard';
 export { AdminSignUpView } from './AdminSignUp';
 export { UserSignUpView } from './UserSignUp';
 export { DeliverySignUpView } from './DeliverySignUp';
+export { AdminDashboardView } from './AdminDashboard';

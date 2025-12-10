@@ -3,7 +3,7 @@
 // Configuración de rutas de la aplicación
 
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { LoginView, DashboardView, AdminSignUpView, UserSignUpView, DeliverySignUpView } from '../views';
+import { LoginView, DashboardView, AdminSignUpView, UserSignUpView, DeliverySignUpView, AdminDashboardView } from '../views';
 
 // Route definitions
 export const router = createBrowserRouter([
@@ -26,6 +26,10 @@ export const router = createBrowserRouter([
     {
         path: '/delivery/signup',
         element: <DeliverySignUpView />
+    },
+    {
+        path: '/dashboard/admin',
+        element: <AdminDashboardView />
     },
     {
         path: '/dashboard/:role',
