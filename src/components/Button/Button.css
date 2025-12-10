@@ -1,0 +1,216 @@
+/* src/components/Button/Button.css */
+/* Button Component Styles */
+
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    font-family: var(--font-family-primary);
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ripple Effect */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Sizes */
+.btn--sm {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--text-sm);
+    min-height: 36px;
+}
+
+.btn--md {
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: var(--text-base);
+    min-height: 48px;
+}
+
+.btn--lg {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    font-size: var(--text-lg);
+    min-height: 56px;
+}
+
+/* Full Width */
+.btn--full-width {
+    width: 100%;
+}
+
+/* Primary Variant - User Accent */
+.btn--primary.btn--accent-user {
+    background: linear-gradient(135deg, var(--color-accent-user) 0%, var(--color-accent-user-dark) 100%);
+    color: var(--color-bg-primary);
+    box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
+}
+
+.btn--primary.btn--accent-user:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--color-accent-user-light) 0%, var(--color-accent-user) 100%);
+    box-shadow: 0 6px 25px rgba(0, 212, 170, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Primary Variant - Delivery Accent */
+.btn--primary.btn--accent-delivery {
+    background: linear-gradient(135deg, var(--color-accent-delivery) 0%, var(--color-accent-delivery-dark) 100%);
+    color: var(--color-bg-primary);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.btn--primary.btn--accent-delivery:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--color-accent-delivery-light) 0%, var(--color-accent-delivery) 100%);
+    box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Primary Variant - Admin Accent */
+.btn--primary.btn--accent-admin {
+    background: linear-gradient(135deg, var(--color-accent-admin) 0%, var(--color-accent-admin-dark) 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+}
+
+.btn--primary.btn--accent-admin:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--color-accent-admin-light) 0%, var(--color-accent-admin) 100%);
+    box-shadow: 0 6px 25px rgba(124, 58, 237, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Secondary Variant */
+.btn--secondary {
+    background: var(--color-bg-card);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+
+.btn--secondary:hover:not(:disabled) {
+    background: var(--color-bg-card-hover);
+    border-color: var(--color-border-hover);
+}
+
+/* Outline Variant */
+.btn--outline.btn--accent-user {
+    background: transparent;
+    color: var(--color-accent-user);
+    border: 2px solid var(--color-accent-user);
+}
+
+.btn--outline.btn--accent-user:hover:not(:disabled) {
+    background: rgba(0, 212, 170, 0.1);
+}
+
+.btn--outline.btn--accent-delivery {
+    background: transparent;
+    color: var(--color-accent-delivery);
+    border: 2px solid var(--color-accent-delivery);
+}
+
+.btn--outline.btn--accent-delivery:hover:not(:disabled) {
+    background: rgba(255, 107, 53, 0.1);
+}
+
+.btn--outline.btn--accent-admin {
+    background: transparent;
+    color: var(--color-accent-admin);
+    border: 2px solid var(--color-accent-admin);
+}
+
+.btn--outline.btn--accent-admin:hover:not(:disabled) {
+    background: rgba(124, 58, 237, 0.1);
+}
+
+/* Ghost Variant */
+.btn--ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+}
+
+.btn--ghost:hover:not(:disabled) {
+    background: var(--color-bg-card);
+    color: var(--color-text-primary);
+}
+
+/* Disabled State */
+.btn--disabled,
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Loading State */
+.btn--loading {
+    cursor: wait;
+}
+
+.btn__loader {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.btn__loader-dot {
+    width: 6px;
+    height: 6px;
+    background: currentColor;
+    border-radius: 50%;
+    animation: btn-loading 1.4s infinite ease-in-out both;
+}
+
+.btn__loader-dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.btn__loader-dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes btn-loading {
+    0%, 80%, 100% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Focus State */
+.btn:focus-visible {
+    outline: 2px solid var(--color-accent-user);
+    outline-offset: 3px;
+}
+
+.btn--accent-delivery:focus-visible {
+    outline-color: var(--color-accent-delivery);
+}
+
+.btn--accent-admin:focus-visible {
+    outline-color: var(--color-accent-admin);
+}

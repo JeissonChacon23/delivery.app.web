@@ -1,0 +1,219 @@
+/* src/views/AdminSignUp/AdminSignUpView.css */
+/* AdminSignUp View Styles */
+/* Vista de registro de administrador - Diseño moderno oscuro */
+
+.admin-signup {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Background Effects */
+.admin-signup__bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.admin-signup__bg-gradient {
+    position: absolute;
+    inset: 0;
+    opacity: 0.6;
+    background:
+            radial-gradient(ellipse at 30% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+            radial-gradient(ellipse at 70% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 40%);
+}
+
+.admin-signup__bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+            linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+/* Main Content */
+.admin-signup__main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    z-index: 1;
+}
+
+.admin-signup__container {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+}
+
+/* Header */
+.admin-signup__header {
+    text-align: center;
+    animation: slideDown var(--transition-slow) ease-out;
+}
+
+.admin-signup__logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-accent-admin);
+}
+
+.admin-signup__logo svg {
+    width: 100%;
+    height: 100%;
+}
+
+.admin-signup__title {
+    font-family: var(--font-family-display);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-sm) 0;
+    letter-spacing: -0.02em;
+}
+
+.admin-signup__subtitle {
+    font-size: var(--text-base);
+    color: var(--color-accent-admin);
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Form */
+.admin-signup__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    animation: slideUp var(--transition-slow) ease-out;
+}
+
+.admin-signup__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    padding: var(--spacing-sm) 0;
+    transition: color var(--transition-fast);
+    align-self: flex-start;
+}
+
+.admin-signup__back:hover {
+    color: var(--color-accent-admin);
+}
+
+.admin-signup__fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* Error Message */
+.admin-signup__error {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: var(--radius-lg);
+    color: var(--color-error);
+    font-size: var(--text-sm);
+}
+
+.admin-signup__error svg {
+    flex-shrink: 0;
+}
+
+/* Login Link */
+.admin-signup__login-link {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+    margin: 0;
+}
+
+.admin-signup__login-link a {
+    color: var(--color-accent-admin);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.admin-signup__login-link a:hover {
+    color: var(--color-accent-admin-light);
+}
+
+/* Footer */
+.admin-signup__footer {
+    text-align: center;
+    animation: fadeIn var(--transition-slow) ease-out;
+    animation-delay: 300ms;
+    animation-fill-mode: both;
+}
+
+.admin-signup__footer p {
+    font-size: var(--text-xs);
+    color: var(--color-text-disabled);
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .admin-signup__main {
+        padding: var(--spacing-lg);
+        align-items: flex-start;
+        padding-top: var(--spacing-2xl);
+    }
+
+    .admin-signup__container {
+        gap: var(--spacing-xl);
+    }
+
+    .admin-signup__logo {
+        width: 56px;
+        height: 56px;
+    }
+
+    .admin-signup__title {
+        font-size: var(--text-3xl);
+    }
+
+    .admin-signup__subtitle {
+        font-size: var(--text-sm);
+    }
+}
+
+@media (max-width: 400px) {
+    .admin-signup__main {
+        padding: var(--spacing-md);
+        padding-top: var(--spacing-xl);
+    }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .admin-signup__header,
+    .admin-signup__form,
+    .admin-signup__footer {
+        animation: none;
+        opacity: 1;
+    }
+}

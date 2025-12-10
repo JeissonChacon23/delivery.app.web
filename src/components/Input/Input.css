@@ -1,0 +1,181 @@
+/* src/components/Input/Input.css */
+/* Input Component Styles */
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.input-container--full-width {
+    width: 100%;
+}
+
+/* Label */
+.input-label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.input-container--focused .input-label {
+    color: var(--color-text-primary);
+}
+
+.input-container--error .input-label {
+    color: var(--color-error);
+}
+
+/* Input Wrapper */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Input Field */
+.input-field {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-normal);
+}
+
+.input-field::placeholder {
+    color: var(--color-text-muted);
+}
+
+/* Focus State - User Accent */
+.input-container--accent-user .input-field:focus {
+    border-color: var(--color-accent-user);
+    box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.15);
+}
+
+.input-container--accent-user.input-container--focused .input-label {
+    color: var(--color-accent-user);
+}
+
+/* Focus State - Delivery Accent */
+.input-container--accent-delivery .input-field:focus {
+    border-color: var(--color-accent-delivery);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
+}
+
+.input-container--accent-delivery.input-container--focused .input-label {
+    color: var(--color-accent-delivery);
+}
+
+/* Focus State - Admin Accent */
+.input-container--accent-admin .input-field:focus {
+    border-color: var(--color-accent-admin);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.input-container--accent-admin.input-container--focused .input-label {
+    color: var(--color-accent-admin);
+}
+
+/* Error State */
+.input-container--error .input-field {
+    border-color: var(--color-error);
+}
+
+.input-container--error .input-field:focus {
+    border-color: var(--color-error);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+/* Hover State */
+.input-field:hover:not(:focus):not(:disabled) {
+    border-color: var(--color-border-hover);
+}
+
+/* Disabled State */
+.input-field:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--color-bg-secondary);
+}
+
+/* Icon Positioning */
+.input-container--icon-left .input-field {
+    padding-left: calc(var(--spacing-lg) + 28px);
+}
+
+.input-container--icon-right .input-field {
+    padding-right: calc(var(--spacing-lg) + 28px);
+}
+
+/* Icons */
+.input-icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    pointer-events: none;
+    transition: color var(--transition-fast);
+}
+
+.input-icon--left {
+    left: var(--spacing-md);
+}
+
+.input-icon--right {
+    right: var(--spacing-md);
+}
+
+.input-container--focused .input-icon {
+    color: var(--color-text-secondary);
+}
+
+/* Password Toggle */
+.input-password-toggle {
+    position: absolute;
+    right: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xs);
+    color: var(--color-text-muted);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.input-password-toggle:hover {
+    color: var(--color-text-secondary);
+    background: var(--color-bg-card-hover);
+}
+
+.input-password-toggle:focus-visible {
+    outline: 2px solid var(--color-accent-user);
+    outline-offset: 2px;
+}
+
+/* Helper Text */
+.input-helper {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    min-height: 1.25rem;
+}
+
+.input-helper--error {
+    color: var(--color-error);
+}
+
+/* Autofill Styles */
+.input-field:-webkit-autofill,
+.input-field:-webkit-autofill:hover,
+.input-field:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--color-text-primary);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-bg-tertiary) inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
