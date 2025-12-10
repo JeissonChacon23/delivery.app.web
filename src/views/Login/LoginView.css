@@ -256,6 +256,15 @@
     color: var(--color-accent-user-light);
 }
 
+/* Sign Up Link - Delivery variant */
+.login-view__signup-link--delivery a {
+    color: var(--color-accent-delivery);
+}
+
+.login-view__signup-link--delivery a:hover {
+    color: var(--color-accent-delivery-light);
+}
+
 /* Footer */
 .login-view__footer {
     text-align: center;

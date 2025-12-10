@@ -9,9 +9,9 @@ import {
     onAuthStateChanged
 } from 'firebase/auth';
 import type { User as FirebaseUser } from 'firebase/auth';
-import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, getDoc, setDoc, serverTimestamp, Timestamp } from 'firebase/firestore';
 import { auth, db } from '../config/firebase.config';
-import type { UserRole, BaseUser, LoginCredentials, UserRegistrationData } from '../models';
+import type { UserRole, BaseUser, LoginCredentials, UserRegistrationData, DeliveryRegistrationData } from '../models';
 
 // Collection names for each user type
 const COLLECTIONS = {
@@ -160,6 +160,104 @@ class AuthService {
                 id: uid,
                 email: data.email,
                 role: 'user',
+                isActive: true,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            } as BaseUser;
+        } catch (error: unknown) {
+            throw this.handleAuthError(error);
+        }
+    }
+
+    // Sign up delivery person with full registration data
+    async signUpDelivery(data: DeliveryRegistrationData): Promise<BaseUser> {
+        try {
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                data.email,
+                data.password
+            );
+
+            const uid = userCredential.user.uid;
+
+            // Helper function to convert date string to Timestamp
+            const toTimestamp = (dateStr: string): Timestamp | null => {
+                if (!dateStr) return null;
+                return Timestamp.fromDate(new Date(dateStr));
+            };
+
+            // Create delivery document with all fields
+            const deliveryData = {
+                uid,
+                email: data.email,
+                role: 'delivery',
+
+                // Personal Info
+                firstName: data.firstName,
+                lastName: data.lastName,
+                idCard: data.idCard,
+                phone: data.phone,
+
+                // Address (solo Cúcuta)
+                address: data.address,
+                neighborhood: data.neighborhood,
+
+                // Personal Data
+                birthDate: toTimestamp(data.birthDate),
+                bloodType: data.bloodType,
+                emergencyContactName: data.emergencyContactName,
+                emergencyContactPhone: data.emergencyContactPhone,
+
+                // Vehicle Info
+                vehicleType: data.vehicleType,
+                vehiclePlate: data.vehiclePlate.toUpperCase(),
+                vehicleBrand: data.vehicleBrand,
+                vehicleModel: data.vehicleModel,
+                vehicleColor: data.vehicleColor,
+                soatExpiryDate: toTimestamp(data.soatExpiryDate),
+                technicalReviewExpiryDate: toTimestamp(data.technicalReviewExpiryDate),
+
+                // Driving License
+                drivingLicenseNumber: data.drivingLicenseNumber,
+                drivingLicenseCategory: data.drivingLicenseCategory,
+                drivingLicenseExpiry: toTimestamp(data.drivingLicenseExpiry),
+
+                // Bank Info
+                bankName: data.bankName,
+                accountType: data.accountType,
+                accountNumber: data.accountNumber,
+
+                // Work Preferences
+                acceptsMessaging: data.acceptsMessaging,
+                acceptsErrands: data.acceptsErrands,
+                acceptsTransport: data.acceptsTransport,
+                maxDeliveryDistance: data.maxDeliveryDistance,
+
+                // Status
+                isProfileComplete: true,
+                status: 'offline',
+                currentOrderId: null,
+                registerDate: serverTimestamp(),
+                isActive: true,
+                isApproved: false, // Requires admin approval
+
+                // Statistics
+                totalDeliveries: 0,
+                rating: 0,
+                totalEarnings: 0,
+
+                // Timestamps
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp()
+            };
+
+            const docRef = doc(db, 'deliveries', uid);
+            await setDoc(docRef, deliveryData);
+
+            return {
+                id: uid,
+                email: data.email,
+                role: 'delivery',
                 isActive: true,
                 createdAt: new Date(),
                 updatedAt: new Date()

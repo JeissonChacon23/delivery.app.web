@@ -284,6 +284,14 @@ export const LoginView: React.FC = () => {
                                     </p>
                                 )}
 
+                                {/* Sign up link - For delivery */}
+                                {selectedRole === 'delivery' && (
+                                    <p className="login-view__signup-link login-view__signup-link--delivery">
+                                        ¿No tienes cuenta?{' '}
+                                        <Link to="/delivery/signup">Crear cuenta de domiciliario</Link>
+                                    </p>
+                                )}
+
                                 {/* Sign up link - For admin */}
                                 {selectedRole === 'admin' && (
                                     <p className="login-view__signup-link">
